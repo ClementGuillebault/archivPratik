@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.cygest.easmobile.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_information"
+        android:name="com.cygest.easmobile.ui.information.InformationFragment"
+        android:label="@string/information"
+        tools:layout="@layout/fragment_information" />
+
+    <fragment
+        android:id="@+id/nav_location"
+        android:name="com.cygest.easmobile.ui.location.LocationFragment"
+        android:label="@string/location"
+        tools:layout="@layout/fragment_location" />
+
+    <fragment
+        android:id="@+id/nav_packing"
+        android:name="com.cygest.easmobile.ui.packing.PackingFragment"
+        android:label="@string/packing"
+        tools:layout="@layout/fragment_packing" />
+
+    <fragment
+        android:id="@+id/nav_warehouse"
+        android:name="com.cygest.easmobile.ui.warehouse.WarehouseFragment"
+        android:label="@string/warehouse"
+        tools:layout="@layout/fragment_warehouse" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.cygest.easmobile.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.cygest.easmobile.ui.help.HelpFragment"
+        android:label="@string/help"
+        tools:layout="@layout/fragment_help" />
+
+</navigation>

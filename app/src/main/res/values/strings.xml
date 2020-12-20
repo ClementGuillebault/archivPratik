@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">EASMobile</string>
+    <string name="home">Accueil</string>
+    <string name="information">Information</string>
+    <string name="packing">Conditionnement</string>
+    <string name="location">Localisation</string>
+    <string name="warehouse">Dépôt</string>
+    <string name="help">Aide</string>
+    <string name="settings">Paramètres</string>
+    <string name="backmainpage">Retour au menu principal</string>
+    <string name="logout">Déconnexion</string>
+    <string name="remove">Supprimer</string>
+    <string name="more">Plus</string>
+
+    <string name="content_description_remove">Supprime les éléments sélectionnés</string>
+    <string name="content_description_more">Afficher plus d\'options</string>
+
+    <string name="main_fragment_label" translatable="false">main menu fragment</string>
+    <string name="info_fragment_label" translatable="false">information fragment</string>
+    <string name="location_fragment_label" translatable="false">location fragment</string>
+    <string name="packing_fragment_label" translatable="false">packing fragment</string>
+    <string name="warehouse_fragment_label" translatable="false">warehouse fragment</string>
+    <string name="help_fragment_label" translatable="false">help fragment</string>
+</resources>
