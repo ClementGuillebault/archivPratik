@@ -1,13 +1,13 @@
 package com.cygest.easmobile.ui.warehouse
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cygest.easmobile.WarehouseRepository
+import javax.inject.Inject
 
-class WarehouseViewModel : ViewModel() {
+class WarehouseViewModel @Inject constructor(
+    warehouseRepository: WarehouseRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val warehouses: LiveData<List<WarehouseFragment.Warehouse>> = warehouseRepository.getWarehouses()
 }
