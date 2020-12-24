@@ -16,13 +16,14 @@ import com.cygest.easmobile.User
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+data class Warehouse(val Id: Int, val Name: String)
+
 @AndroidEntryPoint
 class WarehouseFragment : Fragment() {
 
     @Inject
     lateinit var warehouseViewModel: WarehouseViewModel
 
-    data class Warehouse(val Id: Int, val Name: String)
 
     override fun onCreateView(
             inflater: LayoutInflater,

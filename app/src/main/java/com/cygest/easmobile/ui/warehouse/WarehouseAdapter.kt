@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cygest.easmobile.R
 import dagger.hilt.android.AndroidEntryPoint
 
-class WarehouseAdapter(private val listOfWarehouse: List<WarehouseFragment.Warehouse>) :
+class WarehouseAdapter(private val listOfWarehouse: List<Warehouse>) :
         RecyclerView.Adapter<WarehouseAdapter.WareHouseViewHolder>() {
-    var onItemClick: ((WarehouseFragment.Warehouse) -> Unit)? = null
+    var onItemClick: ((Warehouse) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WareHouseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -42,7 +42,7 @@ class WarehouseAdapter(private val listOfWarehouse: List<WarehouseFragment.Wareh
             })
         }
 
-        fun bind(warehouse: WarehouseFragment.Warehouse) {
+        fun bind(warehouse: Warehouse) {
             mTitleView?.text = warehouse.Name
         }
     }

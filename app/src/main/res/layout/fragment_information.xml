@@ -6,52 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.information.InformationFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <include
+        android:id="@+id/include"
+        layout="@layout/card_view_presentation_unit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224"
-        tools:layout_editor_absoluteX="0dp">
-
-    </androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="297dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
+        android:id="@+id/txt_information_no_action"
+        android:layout_width="240dp"
+        android:layout_height="365dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Scannez un code-barre pour obtenir des informations sur l'unitée scannée"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        tools:layout_editor_absoluteY="108dp"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
-        tools:layout_editor_absoluteY="108dp"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="108dp"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toTopOf="@+id/include" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

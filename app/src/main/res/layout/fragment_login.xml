@@ -8,53 +8,67 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="356dp"
-        android:layout_height="299dp"
+        android:layout_width="287dp"
+        android:layout_height="235dp"
         android:layout_marginTop="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_text_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_logo_foreground" />
+        app:srcCompat="@drawable/ic_logo_login" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/login_text_layout"
-        android:layout_width="384dp"
-        android:layout_height="69dp"
+        android:layout_width="287dp"
+        android:layout_height="155dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="252dp"
+        android:layout_marginBottom="152dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Scanner un code barre d'authentification ou utiliser le couple login/mdp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="Scanner le code-barre">
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.112" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_text_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal|center_vertical"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text=""
-            android:textAlignment="center" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/editTextLoginFragmentLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:hint="login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_text_layout" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTextTextPersonName"-->
-<!--        android:layout_width="331dp"-->
-<!--        android:layout_height="33dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="text"-->
-<!--        android:text="Si vous ne pouvez pas scanner le code-barre, appuyer ici"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.497"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/login_text_layout" />-->
+    <EditText
+        android:id="@+id/editTextLoginFragmentPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textPassword"
+        android:hint="password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginFragmentLogin" />
+
+    <Button
+        android:id="@+id/btnFragmentLoginConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Connexion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginFragmentPwd" />
 
     <TextView
         android:id="@+id/textView3"
@@ -66,7 +80,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         app:layout_constraintVertical_bias="0.913" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

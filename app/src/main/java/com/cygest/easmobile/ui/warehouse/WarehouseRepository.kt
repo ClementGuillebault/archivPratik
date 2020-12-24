@@ -1,16 +1,15 @@
-package com.cygest.easmobile
+package com.cygest.easmobile.ui.warehouse
 
 import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.cygest.easmobile.ui.warehouse.WarehouseFragment
-import com.google.gson.Gson
-import dagger.Module
-import dagger.Provides
+import com.cygest.easmobile.CacheMemory
+import com.cygest.easmobile.ServiceBuilder
+import com.cygest.easmobile.Utility
+import com.cygest.easmobile.libs.WebService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class WarehouseRepository @Inject constructor(
@@ -19,21 +18,21 @@ class WarehouseRepository @Inject constructor(
         //private val warehouseCache: WarehouseCache
 ) {
 
-    fun getWarehouses(): LiveData<List<WarehouseFragment.Warehouse>> {
+    fun getWarehouses(): LiveData<List<Warehouse>> {
 //        var cached : LiveData<WarehouseFragment.Warehouse> = CacheMemory.getUser(Activity()).value
 //        if (cached != null) {
 //            return cached
 //        }
-        val data = MutableLiveData<List<WarehouseFragment.Warehouse>>()
+        val data = MutableLiveData<List<Warehouse>>()
         // warehouseCache.put(data)
         val request = ServiceBuilder.buildService(WebService::class.java)
-        request.getWareHouses(CacheMemory.getUser(Activity()).id).enqueue(object : Callback<List<WarehouseFragment.Warehouse>> {
-            override fun onResponse(call: Call<List<WarehouseFragment.Warehouse>>, response: Response<List<WarehouseFragment.Warehouse>>) {
+        request.getWareHouses(CacheMemory.getUser(Activity()).id).enqueue(object : Callback<List<Warehouse>> {
+            override fun onResponse(call: Call<List<Warehouse>>, response: Response<List<Warehouse>>) {
                 Utility.developerlog(Activity(), "Récupération des dépots OK.list.size=" + response.body()?.size)
                 data.value = response.body()
             }
 
-            override fun onFailure(call: Call<List<WarehouseFragment.Warehouse>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Warehouse>>, t: Throwable) {
                 Utility.developerlog(Activity(), t.message)
             }
         })

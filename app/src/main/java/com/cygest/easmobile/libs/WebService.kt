@@ -1,7 +1,7 @@
-package com.cygest.easmobile
+package com.cygest.easmobile.libs
 
+import com.cygest.easmobile.User
 import com.cygest.easmobile.ui.warehouse.Warehouse
-import com.cygest.easmobile.ui.warehouse.WarehouseFragment
 import retrofit2.Call
 import retrofit2.http.*
 

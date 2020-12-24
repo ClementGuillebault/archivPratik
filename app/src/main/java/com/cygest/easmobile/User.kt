@@ -1,12 +1,13 @@
 package com.cygest.easmobile
 
 import android.app.Activity
+import com.cygest.easmobile.ui.warehouse.Warehouse
 import com.cygest.easmobile.ui.warehouse.WarehouseFragment
 import com.google.gson.Gson
 
 class User {
     var culture: String = ""
-    var warehouse: WarehouseFragment.Warehouse? = null
+    var warehouse: Warehouse? = null
     var id: Int = 0
     var login: String = ""
     var name: String = ""
