@@ -2,11 +2,10 @@ package com.cygest.easmobile.ui.warehouse
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import javax.inject.Inject
+import androidx.lifecycle.liveData
 
-class WarehouseViewModel @Inject constructor(
-    warehouseRepository: WarehouseRepository
-) : ViewModel() {
+class WarehouseViewModel(): ViewModel() {
+    var userId: Int = 0
 
-    val warehouses: LiveData<List<Warehouse>> = warehouseRepository.getWarehouses()
+    val warehouses: LiveData<List<Warehouse>> = liveData { emit(WarehouseRepository().getWarehouses(userId)) }
 }

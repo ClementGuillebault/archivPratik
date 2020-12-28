@@ -7,16 +7,16 @@ import retrofit2.http.*
 
 interface WebService {
     @GET("/Repository/GetRepositories")
-    fun getWareHouses(@Query("id") key: Int): Call<List<Warehouse>>
+    suspend fun getWareHouses(@Query("id") key: Int): List<Warehouse>
 
     @FormUrlEncoded
-    @POST("/token")
-    fun getToken(@Field("UserName") login: String, @Field("Password") password: String, @Field("grant_type") type: String = "password"): Call<Any>
+    @POST("/Token")
+    suspend fun getToken(@Field("UserName") login: String, @Field("Password") password: String, @Field("grant_type") type: String = "password"): Any
 
-    @POST("/User/GetUser")
-    fun tryToAuthenticate(): Call<User>
+    @GET("/User/GetUser")
+    suspend fun getUser(): User
 
     @FormUrlEncoded
-    @POST("")
-    fun getInformation(@Field("cb") cb: String): Call<Any>
+    @POST("/Information/Process")
+    suspend fun getInformation(@Field("cb") cb: String): Any
 }

@@ -1,37 +1,65 @@
 package com.cygest.easmobile
 
-import android.app.Activity
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
+import com.cygest.easmobile.libs.HttpBuilder
 import com.cygest.easmobile.libs.WebService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.gson.internal.LinkedTreeMap
 
-class AuthRepository {
+class AuthRepository() {
 
-    fun tryToAuthenticate(context: Context): LiveData<User> {
-//        var cached : LiveData<User> = CacheMemory.getUser(Activity()).value
-//        if (cached != null) {
-//            return cached
+//    suspend fun getToken(login: String, pwd: String, context: Context) {
+//        try {
+//            val response = HttpBuilder().build(WebService::class.java, context)
+//                    .getToken(login, pwd)
+//                    .awaitResponse()
+//            if (!response.isSuccessful) {
+//                return
+//            }
+//            val accessToken: String = (response.body() as LinkedTreeMap<*, *>)["access_token"].toString()
+//            Utility.developerlog(context, "token: $accessToken")
+//            Constants.TOKEN = accessToken
+//            CacheMemory.saveToken(context, accessToken)
 //        }
-        val data = MutableLiveData<User>()
-        // userCache.put(data)
-        val r = HttpBuilder().build(WebService::class.java, context)
-        val request = ServiceBuilder.buildService(WebService::class.java)
-        r.tryToAuthenticate().enqueue(object :
-            Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                Utility.developerlog(context, "Récupération du user et de la clé OK. user id=" + response.body()?.id)
-                data.value = response.body()
-            }
+//        catch (t: Throwable) {
+//
+//        }
+//    }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Utility.developerlog(context, t.message)
-            }
-        })
-        return data
+//    fun getTokenV3(login: String, pwd: String, context: Context) {
+//        runBlocking {
+//            try {
+//                val response = HttpBuilder().build(WebService::class.java, context).getTokenAsync(login, pwd)
+//
+//                val accessToken: String = (response as LinkedTreeMap<*, *>)["access_token"].toString()
+//                Utility.developerlog(context, "token: $accessToken")
+//                Constants.TOKEN = accessToken
+//                CacheMemory.saveToken(context, accessToken)
+//            } catch (t: Throwable) {
+//
+//            }
+//        }
+//    }
+
+    suspend fun getToken(login: String, pwd: String) {
+            val response = HttpBuilder().build(WebService::class.java).getToken(login, pwd)
+            val accessToken: String = (response as LinkedTreeMap<*, *>)["access_token"].toString()
+            Constants.TOKEN = accessToken
     }
 
+    suspend fun getUser(): User {
+        return HttpBuilder().build(WebService::class.java).getUser()
+    }
+//        HttpBuilder().build(WebService::class.java, context).tryToAuthenticate().enqueue(object :
+//            Callback<User> {
+//            override fun onResponse(call: Call<User>, response: Response<User>) {
+//                data.value = response.body()
+//            }
+//
+//            override fun onFailure(call: Call<User>, t: Throwable) {
+//                // Error
+//            }
+//        })
+//        return data
+//    }
 }

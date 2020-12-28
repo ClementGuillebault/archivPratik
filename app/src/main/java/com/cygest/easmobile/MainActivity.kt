@@ -1,6 +1,7 @@
 package com.cygest.easmobile
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -19,12 +20,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
+import com.cygest.easmobile.libs.BarcodeLaserSdk
+import com.cygest.easmobile.libs.BarcodeResultInterface
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BarcodeResultInterface {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private var scanOn: Boolean = false
+    var barcodeLaserSdk: BarcodeLaserSdk? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
             val user: User = CacheMemory.getUser(this)
 
-            if (user.isValid) {
+            if (user.isValid == true) {
                 val toolbar: Toolbar = findViewById(R.id.toolbar)
                 setSupportActionBar(toolbar)
 
@@ -49,11 +54,30 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_help), drawerLayout)
                 setupActionBarWithNavController(navController, appBarConfiguration)
                 navView.setupWithNavController(navController)
+
+                val fab: FloatingActionButton = findViewById(R.id.fab_scanning)
+                fab.setOnClickListener {
+                    Scan()
+                }
             }
+            barcodeLaserSdk = BarcodeLaserSdk.getInstance(this)
         }
 
         if (savedInstanceState == null) {
             findNavController(R.id.nav_host_fragment).navigate(R.id.nav_logout)
+        }
+    }
+
+
+    fun Scan() {
+        if (!scanOn) {
+            barcodeLaserSdk?.start()
+            scanOn = true
+//            cleanScreen()
+        }
+        else {
+            barcodeLaserSdk?.stop()
+            scanOn = false
         }
     }
 
@@ -101,5 +125,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun getResult(result: String) {
+        val t = result
+        val cc = t
+    }
+
+    override fun onCameraReleased() {
+        // nothing
     }
 }

@@ -1,28 +1,28 @@
 package com.cygest.easmobile
 
-import android.app.Activity
+import android.content.Context
 import com.cygest.easmobile.ui.warehouse.Warehouse
-import com.cygest.easmobile.ui.warehouse.WarehouseFragment
 import com.google.gson.Gson
 
 class User {
-    var culture: String = ""
-    var warehouse: Warehouse? = null
-    var id: Int = 0
-    var login: String = ""
-    var name: String = ""
-    var password: String = ""
-    var typeOfConnection: String = "barcode"
-    var isDeveloper: Boolean = false
-    var isValid: Boolean = false
+    var Culture: String = ""
+    var Repository: Int = 0
+    var Id: Int = 0
+    var Login: String = ""
+    var UserName: String = ""
+    var Password: String = ""
+    // var typeOfConnection: String = "barcode"
+    var isDeveloper: Boolean? = null
+    var isValid: Boolean? = null
+    var token: String? = null
 
     fun serialize(): String {
         return Gson().toJson(this)
     }
 
-    fun create(activity: Activity) {
+    fun create(context: Context) {
         isValid = true
-        CacheMemory.save(this, activity)
+        CacheMemory.save(context, this)
     }
 
     companion object {
