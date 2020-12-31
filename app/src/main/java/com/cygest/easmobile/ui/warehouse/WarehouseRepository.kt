@@ -9,6 +9,7 @@ import com.cygest.easmobile.libs.WebService
 class WarehouseRepository {
     /**
      * Get warehouses from API.
+     * @param id User id
      * @return ListOf([Warehouse])
      */
     suspend fun getWarehouses(id: Int): List<Warehouse> {

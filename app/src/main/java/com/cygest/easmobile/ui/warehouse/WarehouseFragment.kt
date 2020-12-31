@@ -1,15 +1,12 @@
 package com.cygest.easmobile.ui.warehouse
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cygest.easmobile.CacheMemory
@@ -19,6 +16,9 @@ import com.cygest.easmobile.User
 data class Warehouse(val Id: Int, val Name: String)
 
 class WarehouseFragment : Fragment() {
+
+    private val warehouseViewModel by viewModels<WarehouseViewModel>()
+    private val listWarehouses by lazy { view?.findViewById<RecyclerView>(R.id.list_warehouses) }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -31,23 +31,30 @@ class WarehouseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listWarehouses: RecyclerView = view.findViewById(R.id.list_warehouses)
-        listWarehouses.layoutManager = LinearLayoutManager(activity)
-        listWarehouses.adapter = WarehouseAdapter(listOf())
+        listWarehouses?.layoutManager = LinearLayoutManager(activity)
+        listWarehouses?.adapter = WarehouseAdapter(listOf())
 
         val user: User = CacheMemory.getUser(context)
 
-        val warehouseViewModel: WarehouseViewModel =
-                ViewModelProvider(this).get(WarehouseViewModel::class.java)
-        warehouseViewModel.userId = user.Id
+        warehouseViewModel.warehouses(user.Id).observe(viewLifecycleOwner) {
+            listWarehouses?.adapter = WarehouseAdapter(it)
+        }
 
-        try {
-            warehouseViewModel.warehouses.observe(viewLifecycleOwner, Observer { warehouses ->
-                listWarehouses.adapter = WarehouseAdapter(warehouses)
-            })
+/*      WITHOUT VIEWMODEL
+//        CoroutineScope(Dispatchers.IO).launch {
+//            delay(5000)
+//            val t = WarehouseRepository().getWarehouses(user.Id)
+//            withContext(Dispatchers.Main) {
+//                listWarehouses.adapter = WarehouseAdapter(t)
+//            }
+//        }
+
+
+
+//        warehouseViewModel.getWarehouse(user.Id)
+//        warehouseViewModel.warehouses2.observe(viewLifecycleOwner) {
+//            listWarehouses.adapter = WarehouseAdapter(it)
         }
-        catch (t: Throwable) {
-            Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_LONG).show()
-        }
+*/
     }
 }

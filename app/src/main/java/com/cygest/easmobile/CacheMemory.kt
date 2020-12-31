@@ -2,6 +2,7 @@ package com.cygest.easmobile
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 /**
  * Cached memory for user, settings and security token.
@@ -20,9 +21,8 @@ class CacheMemory {
         fun save(context: Context?, user: User) {
             val sharedPref: SharedPreferences =
                     context?.getSharedPreferences(Constants.USER, Context.MODE_PRIVATE) ?: return
-            with(sharedPref.edit()) {
+            sharedPref.edit {
                 putString(Constants.USER, user.serialize())
-                apply()
             }
         }
 
